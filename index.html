@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="app.js"></script>
+  </head>
+  <body class="flex items-center align-middle justify-center bg-gray-100">
+    <section
+      class="w-150 h-100 flex items-center align-middle justify-center bg-white border rounded-lg border-gray-200 transition-shadow shadow-sm hover:shadow-md "
+    >
+      <div>
+        <section>
+          <div><span class="text-gray-950">Student Dashboard</span></div>
+          <div><span class="text-gray-400">Welcome back, Oscar!</span></div>
+        </section>
+        <section>
+          <div>
+            <input
+              type="text"
+              name="Enter you Status"
+              class="border rounded-md border-gray-200"
+            />
+          </div>
+          <div>
+            <button
+              class="cursor-pointer m-1 text-white items-center bg-blue-300"
+            >
+              Update Status
+            </button>
+          </div>
+        </section>
+        <section>
+          <div
+            class="inline-flex justify-between items-center align-middle gap-3"
+          >
+            <div><span>Dark mode toggle</span></div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="toggle" class="sr-only peer" />
+              <div
+                class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-500 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:h-5 after:w-5 after:rounded-full after:transition-all peer-checked:after:translate-x-5"
+              ></div>
+            </label>
+          </div>
+        </section>
+      </div>
+    </section>
+  </body>
+</html>
