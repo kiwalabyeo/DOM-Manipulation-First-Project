@@ -13,9 +13,10 @@
 
     <script src="carDiagnostic.js" defer></script>
   </head>
-  <body class="flex items-center justify-center bg-slate-950 text-white">
+  <body class="flex items-center justify-center bg-slate-950 text-white overflow-x-hidden">
     <div class="w-full h-full p-7 mx-6">
       <section
+        id="overallPill"
         class="bg-slate-900 border border-blue-900 rounded-xl p-5 w-full space-y-5"
       >
         <div class="space-y-5 mx-4 my-3">
@@ -43,6 +44,7 @@
               </div>
             </div>
             <div
+              id="overallTextBox"
               class="flex items-center gap-2 text-amber-500 bg-amber-500/10 border rounded-lg border-amber-500/30 max-h-max max-w-max p-3"
             >
               <svg
@@ -60,7 +62,7 @@
                   d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"
                 />
               </svg>
-              <span>Attention Required</span>
+              <span id="overallText">Attention Required</span>
             </div>
           </div>
           <div class="flex flex-col md:flex-row items-center gap-4">
@@ -123,10 +125,12 @@
         <h1 class="font-semibold text-xl">System Health</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div
+            id="engineTile"
             class="bg-slate-900 border border-blue-900 rounded-xl p-5 w-full space-y-5"
           >
             <div class="space-y-5 mx-4 my-3">
               <div
+                id="engineIcon"
                 class="bg-green-400/5 text-green-400 max-h-max max-w-max p-4 border rounded-md border-green-400/5"
               >
                 <svg
@@ -145,19 +149,21 @@
               </div>
               <div>
                 <h1 class="font-semibold text-xl">Engine</h1>
-                <p class="text-green-400">Normal</p>
+                <p id="engineStatus" class="text-green-400">Normal</p>
               </div>
               <div class="flex justify-between">
                 <span class="text-slate-500 font-bold">Temperature</span>
-                <span>92°C</span>
+                <span id="engineValue">92°C</span>
               </div>
             </div>
           </div>
           <div
+            id="batteryTile"
             class="bg-slate-900 border border-blue-900 rounded-xl p-5 w-full space-y-5"
           >
             <div class="space-y-5 mx-4 my-3">
               <div
+                id="batteryIcon"
                 class="bg-green-400/5 text-green-400 max-h-max max-w-max p-4 border rounded-md border-green-400/5"
               >
                 <svg
@@ -165,30 +171,32 @@
                   width="16"
                   height="16"
                   fill="currentColor"
-                  class="bi bi-activity"
+                  class="bi bi-battery-half"
                   viewBox="0 0 16 16"
                 >
+                  <path d="M2 6h5v4H2z" />
                   <path
-                    fill-rule="evenodd"
-                    d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"
+                    d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8"
                   />
                 </svg>
               </div>
               <div>
-                <h1 class="font-semibold text-xl">Engine</h1>
-                <p class="text-green-400">Normal</p>
+                <h1 class="font-semibold text-xl">Battery</h1>
+                <p id="batteryStatus" class="text-green-400">Normal</p>
               </div>
               <div class="flex justify-between">
-                <span class="text-slate-500 font-bold">Temperature</span>
-                <span>92°C</span>
+                <span class="text-slate-500 font-bold">Voltage</span>
+                <span id="batteryValue">12.2V</span>
               </div>
             </div>
           </div>
           <div
+            id="brakesTile"
             class="bg-slate-900 border border-blue-900 rounded-xl p-5 w-full space-y-5"
           >
             <div class="space-y-5 mx-4 my-3">
               <div
+                id="brakesIcon"
                 class="bg-green-400/5 text-green-400 max-h-max max-w-max p-4 border rounded-md border-green-400/5"
               >
                 <svg
@@ -196,30 +204,34 @@
                   width="16"
                   height="16"
                   fill="currentColor"
-                  class="bi bi-activity"
+                  class="bi bi-disc"
                   viewBox="0 0 16 16"
                 >
                   <path
-                    fill-rule="evenodd"
-                    d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"
+                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                  />
+                  <path
+                    d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0M8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1m4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5"
                   />
                 </svg>
               </div>
               <div>
-                <h1 class="font-semibold text-xl">Engine</h1>
-                <p class="text-green-400">Normal</p>
+                <h1 class="font-semibold text-xl">Brakes</h1>
+                <p id="brakesStatus" class="text-green-400">Normal</p>
               </div>
               <div class="flex justify-between">
-                <span class="text-slate-500 font-bold">Temperature</span>
-                <span>92°C</span>
+                <span class="text-slate-500 font-bold">Wear</span>
+                <span id="brakesValue">8%</span>
               </div>
             </div>
           </div>
           <div
+            id="electronicsTile"
             class="bg-slate-900 border border-blue-900 rounded-xl p-5 w-full space-y-5"
           >
             <div class="space-y-5 mx-4 my-3">
               <div
+                id="electronicsIcon"
                 class="bg-green-400/5 text-green-400 max-h-max max-w-max p-4 border rounded-md border-green-400/5"
               >
                 <svg
@@ -227,31 +239,30 @@
                   width="16"
                   height="16"
                   fill="currentColor"
-                  class="bi bi-activity"
+                  class="bi bi-cpu"
                   viewBox="0 0 16 16"
                 >
                   <path
-                    fill-rule="evenodd"
-                    d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"
+                    d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"
                   />
                 </svg>
               </div>
               <div>
-                <h1 class="font-semibold text-xl">Engine</h1>
-                <p class="text-green-400">Normal</p>
+                <h1 class="font-semibold text-xl">Electronics</h1>
+                <p id="electronicsStatus" class="text-green-400">Normal</p>
               </div>
               <div class="flex justify-between">
-                <span class="text-slate-500 font-bold">Temperature</span>
-                <span>92°C</span>
+                <span class="text-slate-500 font-bold">Active Errors</span>
+                <span id="electronicsValue">2</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section>
-        <p>Detected Issues</p>
+      <section class="mt-5">
+        <p class="font-semibold text-xl">Detected Issues</p>
         <div>
-          <ul class="divide-y divide-slate-800">
+          <ul id="issuesList" class="divide-y divide-slate-800">
             <li
               class="flex items-center gap-4 px-4 py-3 hover:bg-slate-800/50 transition"
             >
@@ -280,75 +291,72 @@
               <!-- Main content -->
               <div class="flex-1">
                 <p class="font-medium text-white">
-                  ABS Module Communication Error
+                  Instrument Cluster Communication Lost
                 </p>
-                <p class="text-sm text-slate-400">Electronics • Code P0420</p>
+                <p class="text-sm text-slate-400">Electronics • Code U0155</p>
               </div>
 
               <!-- Time -->
               <time class="text-sm text-slate-500 whitespace-nowrap">
-                6h ago
+                9d ago
               </time>
             </li>
             <li
               class="flex items-center gap-4 px-4 py-3 hover:bg-slate-800/50 transition"
             >
               <!-- Severity dot -->
-              <span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-orange-500"></span>
 
               <!-- Main content -->
               <div class="flex-1">
-                <p class="font-medium text-white">
-                  ABS Module Communication Error
-                </p>
-                <p class="text-sm text-slate-400">Electronics • Code P0420</p>
+                <p class="font-medium text-white">Battery Voltage Low</p>
+                <p class="text-sm text-slate-400">Battery • Code B1204</p>
               </div>
 
               <!-- Time -->
               <time class="text-sm text-slate-500 whitespace-nowrap">
-                6h ago
+                6d ago
               </time>
             </li>
             <li
               class="flex items-center gap-4 px-4 py-3 hover:bg-slate-800/50 transition"
             >
               <!-- Severity dot -->
-              <span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-orange-500"></span>
 
               <!-- Main content -->
               <div class="flex-1">
                 <p class="font-medium text-white">
-                  ABS Module Communication Error
+                  Brake Pad Wear Sensor Active
                 </p>
-                <p class="text-sm text-slate-400">Electronics • Code P0420</p>
+                <p class="text-sm text-slate-400">Brakes • Code C0035</p>
               </div>
 
               <!-- Time -->
               <time class="text-sm text-slate-500 whitespace-nowrap">
-                6h ago
+                16h ago
               </time>
             </li>
             <li
               class="flex items-center gap-4 px-4 py-3 hover:bg-slate-800/50 transition"
             >
               <!-- Severity dot -->
-              <span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-blue-500"></span>
 
               <!-- Main content -->
               <div class="flex-1">
                 <p class="font-medium text-white">
-                  ABS Module Communication Error
+                  Coolant Temperature Below Thermostat
                 </p>
-                <p class="text-sm text-slate-400">Electronics • Code P0420</p>
+                <p class="text-sm text-slate-400">Engine • Code P0128</p>
               </div>
 
               <!-- Time -->
               <time class="text-sm text-slate-500 whitespace-nowrap">
-                6h ago
+                10d ago
               </time>
             </li>
           </ul>
-          
         </div>
       </section>
     </div>
