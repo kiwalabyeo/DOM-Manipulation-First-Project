@@ -56,16 +56,17 @@ function getElectronicsStatus(issues) {
 
 //Styles of the different warnings
 const styles = {
-    normal: { text: "text-green-400", iconText: "text-green-400", iconBg: "bg-green-400/5", dot: "bg-green-400"},
-    warning: { text: "text-amber-500", iconText: "text-amber-500", iconBg: "bg-amber-500/5", dot: "bg-amber-500"},
-    critical: { text: "text-red-500", iconText: "text-red-500", iconBg: "bg-red-500/5", dot: "bg-red-500"}
+  normal: { text: "text-green-400", iconText: "text-green-400", iconBg: "bg-green-400/5", dot: "bg-green-400", border: "border-green-400"},
+  warning: { text: "text-amber-500", iconText: "text-amber-500", iconBg: "bg-amber-500/5", dot: "bg-amber-500", border: "border-amber-500"},
+  critical: { text: "text-red-500", iconText: "text-red-500", iconBg: "bg-red-500/5", dot: "bg-red-500", border: "border-red-500"}
 };
 
 //Classes that I might need to get rid of
 const textClasses = ["text-green-400", "text-amber-500", "text-red-500"];
 const iconBgClasses = ["bg-green-400/5", "bg-amber-500/10", "bg-red-500/10"];
+const borderClasses = ["border-blue-900"]
 
-function applyTile(tileIcon, tileStatus, tileValue, state, valueText) {
+function applyTile(tileIcon, tileStatus, tileValue, tileBorder, state, valueText) {
   tileStatus.textContent =
     state.charAt(0).toUpperCase() + state.slice(1);
 
@@ -74,20 +75,23 @@ function applyTile(tileIcon, tileStatus, tileValue, state, valueText) {
   tileStatus.classList.remove(...textClasses);
   tileIcon.classList.remove("text-green-400", "text-amber-500", "text-red-500");
   tileIcon.classList.remove(...iconBgClasses);
+  if (tileBorder) tileBorder.classList.remove(...borderClasses);
 
   tileStatus.classList.add(styles[state].text);
   tileIcon.classList.add(styles[state].iconText);
   tileIcon.classList.add(styles[state].iconBg);
+  if (tileBorder) tileBorder.classList.add(styles[state].border);
 }
 
 
-const engineTemp = 85;
+const engineTemp = 95;
 const engineState = getEngineStatus(engineTemp);
 
 applyTile(
   engineIcon,
   engineStatus,
   engineValue,
+  engineTile,
   engineState,
   `${engineTemp}°C`
 );
@@ -99,8 +103,31 @@ applyTile(
   batteryIcon,
   batteryStatus,
   batteryValue,
+  batteryTile,
   batteryState,
   `${batteryVoltage}V`
+);
+
+const brakesWear = 60;
+const brakesState = getBrakesStatus(brakesWear);
+applyTile(
+  brakesIcon,
+    brakesStatus,
+    brakesValue,
+    brakesTile,
+    brakesState,
+    `${brakesWear}%`
+);
+
+const electronicsIssues = ["Headlight", "Dashboard"];
+const electronicsState = getElectronicsStatus(electronicsIssues);
+applyTile(
+  electronicsIcon,
+  electronicsStatus,
+  electronicsValue,
+  electronicsTile,
+  electronicsState,
+  `${electronicsIssues.length}`
 );
 
 function getWorstState(states) {
@@ -156,9 +183,9 @@ function applyOverallPill(state) {
 
 const worstState = getWorstState([
   engineState,
-  batteryState
-  // later add brakesState,
-  // electronicsState
+    batteryState,
+    brakesState,
+    electronicsState
 ]);
 
 applyOverallPill(worstState);
