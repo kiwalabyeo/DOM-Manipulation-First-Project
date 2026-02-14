@@ -75,12 +75,12 @@ function applyTile(tileIcon, tileStatus, tileValue, tileBorder, state, valueText
   tileStatus.classList.remove(...textClasses);
   tileIcon.classList.remove("text-green-400", "text-amber-500", "text-red-500");
   tileIcon.classList.remove(...iconBgClasses);
-  if (tileBorder) tileBorder.classList.remove(...borderClasses);
+  tileBorder.classList.remove(...borderClasses);
 
   tileStatus.classList.add(styles[state].text);
   tileIcon.classList.add(styles[state].iconText);
   tileIcon.classList.add(styles[state].iconBg);
-  if (tileBorder) tileBorder.classList.add(styles[state].border);
+  tileBorder.classList.add(styles[state].border);
 }
 
 
