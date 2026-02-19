@@ -108,7 +108,7 @@ applyTile(
   `${batteryVoltage}V`
 );
 
-const brakesWear = 60;
+const brakesWear = 68;
 const brakesState = getBrakesStatus(brakesWear);
 applyTile(
   brakesIcon,
